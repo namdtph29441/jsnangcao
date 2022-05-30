@@ -4,16 +4,18 @@ import footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import News from "./pages/News";
+import students from "./pages/students";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
+import Students from "./pages/students";
 //khởi tạo đối tượng router
 
 const router = new Navigo('/',{linksSelector: 'a'});
 
-function render(content){
+    const render = async (content) =>{
     document.querySelector('#header').innerHTML = Header.render();
     //document.querySelector('#content').innerHTML = '<Button class="btn btn-primary">hhhhh</Button>';
-    document.querySelector('#content').innerHTML = content;
+    document.querySelector('#content').innerHTML = await content;
     document.querySelector('#footer').innerHTML =  footer.render();
 
 }
@@ -21,6 +23,7 @@ router.on({
     '/': () => render(Home.render()),
     '/about': () => render(About.render()),
     '/news': () => render(News.render()),
+    '/students': () => render(Students.render()),
 });
 router.resolve();
 //render();
