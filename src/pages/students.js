@@ -9,17 +9,17 @@ const Students = {
         const students = await response.json();
         console.log('students', students);
 
-        return `<div>
+        return `<div class="row">
             ${
                 students.map((student) => (
                     `
-                    <div>
-                        <div>ID: ${student.id} </div>
-                        <div>Ngày tạo: ${student.createdAt} </div>
-                        <div>Name: ${student.name} </div>
-                        <div>MSV: ${student.masv} </div>
+                    <div class="col-lg-4">
+                        
+                            <div>ID: ${student.id} </div>
+                            <div>Ngày tạo: ${student.createdAt} </div>
+                            <div>Name: ${student.name} </div>
+                            <div>MSV: ${student.masv} </div> <br>
                     </div>
-                    <br>
                     `
                 )).join('')
             }
