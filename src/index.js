@@ -8,6 +8,7 @@ import students from "./pages/students";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import Students from "./pages/students";
+import StudentDetail from "./pages/studentdetail";
 //khởi tạo đối tượng router
 
 const router = new Navigo('/',{linksSelector: 'a'});
@@ -24,6 +25,7 @@ router.on({
     '/about': () => render(About.render()),
     '/news': () => render(News.render()),
     '/students': () => render(Students.render()),
+    '/students/:id': (data) =>  render(StudentDetail.render(data.data.id)),
 });
 router.resolve();
 //render();

@@ -8,7 +8,7 @@ const News = {
         <p> ${tin.content}</p>
         <p><a class="btn btn-secondary" href="#">View details »</a></p> 
         </div> `
-        ))
+        )).join('')
     }  
     </div>`,
 
