@@ -1,5 +1,5 @@
-import { getStudents } from "../api/student";
-
+import { deleteStudent, getStudents } from "../api/student";
+import reRender from "../helpers/reRender";
 const Student = {
     render: async () => { // đã đóng ngoặc nhọn phải có return ở trong
         // 1. fetch là phương thức dùng để lấy dữ liệu từ phía BE
@@ -26,13 +26,34 @@ const Student = {
                         <div>Name: ${student.name}</div>
                         <div>MSV: ${student.masv}</div>
                         <a class="btn btn-info" href="/students/${student.id}" role="button">Xem chi tiết</a>
+                        <a class="btn btn-danger" data-id="${student.id}" data-name="${student.name}" role="button">Xoá</a>
+
                         <br>
                     </div>`
                 )).join('')
             }
         </div>`
     },
+    afterRender: () => {
+        // đây là nơi thực thi nghiệp vụ định nghĩa sự kiện xóa
+        // 1. tìm toàn bộ nút xóa và thêm sự kiện click cho nó
+        const deleteBtns = document.querySelectorAll('.btn-danger');
+        deleteBtns.forEach((btn) => {
+            const data = btn.dataset; // {id: '', name: ''} với id ~ data-id, name ~ data-name
+            // addEventListener('tên sự kiện', khi sự kiện kích hoạt sẽ thực thi hàm)
+            btn.addEventListener('click', async () => {
+                const btnId = btn.dataset.id;
+                // thực hiện xóa
+                //console.log(btnId);
+                await deleteStudent(btnId);
+                // window.location.reload();
+                await reRender('#content', Student);
+
+            });
+        });
+    }
 };
+
 
 
 

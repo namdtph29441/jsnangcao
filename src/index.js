@@ -13,19 +13,24 @@ import StudentDetail from "./pages/studentdetail";
 
 const router = new Navigo('/',{linksSelector: 'a'});
 
-    const render = async (content) =>{
+    const render = async (content, id) =>{
+    // content sẽ là toàn bộ component
+    // cần thêm tham số vào hàm này để truyền id cho những phần detail
     document.querySelector('#header').innerHTML = Header.render();
     //document.querySelector('#content').innerHTML = '<Button class="btn btn-primary">hhhhh</Button>';
-    document.querySelector('#content').innerHTML = await content;
+    document.querySelector('#content').innerHTML = await content.render(id);
     document.querySelector('#footer').innerHTML =  footer.render();
+    if (content.afterRender) {
+        content.afterRender();
+    }
 
 }
 router.on({
-    '/': () => render(Home.render()),
-    '/about': () => render(About.render()),
-    '/news': () => render(News.render()),
-    '/students': () => render(Students.render()),
-    '/students/:id': (data) =>  render(StudentDetail.render(data.data.id)),
+    '/': () => render(Home),
+    '/about': () => render(About),
+    '/news': () => render(News),
+    '/students': () => render(Students),
+    '/students/:id': (data) =>  render(StudentDetail, data.data.id),
 });
 router.resolve();
 //render();
