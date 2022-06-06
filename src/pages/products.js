@@ -1,6 +1,6 @@
-import { deleteStudent, getStudents } from "../api/student";
+import { deleteProduct, getProducts } from "../api/product";
 import reRender from "../helpers/reRender";
-const Student = {
+const Product = {
     render: async () => { // đã đóng ngoặc nhọn phải có return ở trong
         // 1. fetch là phương thức dùng để lấy dữ liệu từ phía BE
         // 2. fetch trả về 1 Promise => sẽ có await ở trước fetch để chờ kq
@@ -8,7 +8,7 @@ const Student = {
         // const response1 = await fetch('https://6291d18dcd0c91932b6876da.mockapi.io/students');
 
         // 3.2 sử dụng axios đã được khởi tạo và sinh ra hàm getStudents
-        const response = await getStudents();
+        const response = await getProducts ();
         // const data = response.data;
         const {data} = response;
 
@@ -20,16 +20,17 @@ const Student = {
 
         return `<div class="row">
         <div>
-        <a class="btn btn-success" href="/students/detail/add" role="button">Thêm sinh viên</a>
+        <a class="btn btn-success" href="/products/detail/add" role="button">Thêm sản phẩm</a>
         </div>
             ${
-                data.map((student) => (
+                data.map((product) => (
                     `<div class="col-lg-4">
-                        <div>ID: ${student.id}</div>
-                        <div>Name: ${student.name}</div>
-                        <div>MSV: ${student.masv}</div>
-                        <a class="btn btn-info" href="/students/${student.id}" role="button">Xem chi tiết</a>
-                        <a class="btn btn-danger" data-id="${student.id}" data-name="${student.name}" role="button">Xoá</a>
+                        <div>ID: ${product.id}</div>
+                        <div>Name: ${product.name}</div>
+                        <div>Price: ${product.price}</div>
+                        <div>Status: ${product.status}</div>
+                        <a class="btn btn-info" href="/products/${product.id}" role="button">Xem chi tiết</a>
+                        <a class="btn btn-danger" data-id="${product.id}" data-name="${product.name}" role="button">Xoá</a>
 
                         <br>
                     </div>`
@@ -48,9 +49,9 @@ const Student = {
                 const btnId = btn.dataset.id;
                 // thực hiện xóa
                 //console.log(btnId);
-                await deleteStudent(btnId);
+                await deleteProduct(btnId);
                 // window.location.reload();
-                await reRender('#content', Student);
+                await reRender('#content', Product);
 
             });
         });
@@ -61,4 +62,4 @@ const Student = {
 
 
 
-export default Student;
+export default Product;

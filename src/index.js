@@ -8,7 +8,11 @@ import students from "./pages/students";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import Students from "./pages/students";
-import StudentDetail from "./pages/studentdetail";
+import StudentDetail from "./pages/studentDetail";
+import StudentsAdd from "./pages/studentsAdd";
+import Products from "./pages/products";
+import ProductDetail from "./pages/productDetail";
+import ProductsAdd from "./pages/productAdd";
 //khởi tạo đối tượng router
 
 const router = new Navigo('/',{linksSelector: 'a'});
@@ -30,7 +34,11 @@ router.on({
     '/about': () => render(About),
     '/news': () => render(News),
     '/students': () => render(Students),
+    '/students/detail/add': () => render(StudentsAdd),
     '/students/:id': (data) =>  render(StudentDetail, data.data.id),
+    '/products': () => render(Products),
+    '/products/detail/add': () => render(ProductsAdd),
+    '/products/:id': (data) =>  render(ProductDetail, data.data.id),
 });
 router.resolve();
 //render();

@@ -6,6 +6,7 @@ const Nav = {
         <li><a href='/news' class="nav-link px-2 link-dark">Tin Tức</a></li>
         <li><a href='/about' class="nav-link px-2 link-dark">Liên Hệ</a></li>
         <li><a href='/students' class="nav-link px-2 link-dark">Students</a></li>
+        <li><a href='/products' class="nav-link px-2 link-dark">Products</a></li>
         </ul>
     </nav>`
 
